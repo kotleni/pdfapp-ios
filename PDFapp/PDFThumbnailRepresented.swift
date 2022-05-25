@@ -11,7 +11,8 @@ import SwiftUI
 struct PDFThumbnailRepresented : UIViewRepresentable {
     var pdfView = PDFView()
     var thumbnail = PDFThumbnailView()
-    var urlDoc: URL
+    // var urlDoc: URL
+    var pdfDoc: PDFDocument
     
     func makeUIView(context: Context) -> PDFThumbnailView {
         thumbnail.pdfView = pdfView
@@ -32,9 +33,10 @@ struct PDFThumbnailRepresented : UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: PDFThumbnailView, context: Context) {
-        if let document = PDFDocument(url: urlDoc) {
-            pdfView.document = document
-        }
+        pdfView.document = pdfDoc
+//        if let document = PDFDocument(url: urlDoc) {
+//            pdfView.document = document
+//        }
         
         uiView.pdfView?.backgroundColor = .clear
         uiView.pdfView?.documentView?.backgroundColor = .clear

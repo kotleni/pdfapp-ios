@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import PDFKit
 
 struct ContentView: View {
-    @State private var files: Array<String> = []
+    @State private var files: Array<File> = []
     @State private var isImporting = false
+    @State private var isExporting = false
+    @State private var lastItemSelected = -1
     
     var body: some View {
         NavigationView {
@@ -27,6 +30,9 @@ struct ContentView: View {
                     updateFilesList()
                 }
         }
+        .fileExporter(isPresented: $isExporting, document: lastItemSelected != -1 ? files[lastItemSelected].getMyPDFDocument() : nil, contentType: .pdf, defaultFilename: lastItemSelected != -1 ? "exported-\(files[lastItemSelected].name)" : "unnamed.pdf", onCompletion: { result in
+isExporting = false
+        })
         .fileImporter(isPresented: $isImporting, allowedContentTypes: [.pdf, .png, .jpeg]) { result in
             isImporting = false
             
@@ -63,14 +69,31 @@ struct ContentView: View {
     func updateFilesList() {
         do {
             let appDirPath = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask)[0].path
-            files = try FileManager.default.contentsOfDirectory(atPath: "\(appDirPath)/documents/")
+            let _files = try FileManager.default.contentsOfDirectory(atPath: "\(appDirPath)/documents/")
+            
+            // clear list
+            files.removeAll()
+            
+            // load all files
+            _files.forEach { fileName in
+                if let document = PDFDocument(url: URL.init(fileURLWithPath: "\(appDirPath)/documents/\(fileName)")) {
+                    let doc = File(name: fileName, pdfDocument: document)
+                    files.append(doc)
+                }
+            }
+            
         } catch { print(error.localizedDescription) }
+    }
+    
+    func exportFile(index: Int) {
+        lastItemSelected = index
+        isExporting = true
     }
     
     func removeFile(index: Int) {
         do {
             let appDirPath = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask)[0].path
-            try FileManager.default.removeItem(atPath: "\(appDirPath)/documents/\(files[index])")
+            try FileManager.default.removeItem(atPath: "\(appDirPath)/documents/\(files[index].name)")
         } catch { print(error.localizedDescription) }
         
         updateFilesList()
@@ -78,7 +101,7 @@ struct ContentView: View {
 }
 
 struct FilesListView: View {
-    @Binding var files: Array<String>
+    @Binding var files: Array<File>
     var contentView: ContentView
     
     let appDirPath = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask)[0].path
@@ -89,13 +112,13 @@ struct FilesListView: View {
             LazyVGrid(columns: columns, alignment: .center) {
                 if files.count > 0 {
                     ForEach((1...files.count), id: \.self) { index in
-                        let fileName = files[index-1]
-                        let _index = index-0
+                        let file = files[index-1]
+                        let _index = index-1
                         
                         VStack {
-                            PDFThumbnailRepresented(urlDoc: URL.init(fileURLWithPath: "\(appDirPath)/documents/\(fileName)"))
+                            PDFThumbnailRepresented(pdfDoc: file.pdfDocument)
                             
-                            Text("\(fileName)\n ")
+                            Text("\(file.name)\n ")
                                 //.fontWeight(.bold)
                                 .font(.system(size: 16.0))
                                 .lineLimit(2)
@@ -107,32 +130,33 @@ struct FilesListView: View {
                         .background(Color.fromIRgb(r: 244, g: 244, b: 244))
                         .contentShape(RoundedRectangle(cornerRadius: 8.0))
                         .contextMenu {
-                            Button {
-                            } label: {
-                                Label("Convert to PDF", systemImage: "book.closed")
-                            }
+//                            Button {
+//                            } label: {
+//                                Label("Convert to PDF", systemImage: "book.closed")
+//                            }
+
+//                            Button {
+//                            } label: {
+//                                Label("Merge", systemImage: "arrow.triangle.merge")
+//                            }
+//
+//                            Button {
+//                            } label: {
+//                                Label("Split", systemImage: "square.split.2x1")
+//                            }
                             
                             Button {
-                            } label: {
-                                Label("Merge", systemImage: "arrow.triangle.merge")
-                            }
-                            
-                            Button {
-                            } label: {
-                                Label("Split", systemImage: "square.split.2x1")
-                            }
-                            
-                            Button {
+                                contentView.exportFile(index: _index)
                             } label: {
                                 Label("Save", systemImage: "square.and.arrow.down")
                             }
 
-                            Button(role: .destructive) {
-                                contentView.removeFile(index: _index)
-                            } label: {
-                                Label("Remove", systemImage: "trash")
-                                    .foregroundColor(.red)
-                            }
+//                            Button(role: .destructive) {
+//                                contentView.removeFile(index: _index)
+//                            } label: {
+//                                Label("Remove", systemImage: "trash")
+//                                    .foregroundColor(.red)
+//                            }
                         }
                     }
                 }
