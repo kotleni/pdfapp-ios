@@ -140,20 +140,22 @@ struct FilesListCellView: View {
         .background(Color.fromIRgb(r: 244, g: 244, b: 244))
         .contentShape(RoundedRectangle(cornerRadius: 8.0))
         .contextMenu {
-            Button {
-            } label: {
-                Label("Convert to PDF", systemImage: "book.closed")
-            }
+            //Label("Convert to PDF", systemImage: "book.closed")
+            
+//            Button {
+//            } label: {
+//                Label("Convert to PDF", systemImage: "book.closed")
+//            }
 
-            Button {
-            } label: {
-                Label("Merge", systemImage: "arrow.triangle.merge")
-            }
-
-            Button {
-            } label: {
-                Label("Split", systemImage: "square.split.2x1")
-            }
+//            Button {
+//            } label: {
+//                Label("Merge", systemImage: "arrow.triangle.merge")
+//            }
+//
+//            Button {
+//            } label: {
+//                Label("Split", systemImage: "square.split.2x1")
+//            }
             
             Button {
                 contentView.exportFile(index: index)
