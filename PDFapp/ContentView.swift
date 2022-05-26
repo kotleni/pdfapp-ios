@@ -16,19 +16,22 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            FilesListView(files: $files, contentView: self)
-                .navigationTitle("PDFapp")
-                .toolbar {
-                    ToolbarItem {
-                        Button(action: addItem) {
-                            Text("Import")
+            VStack {
+                FilesListView(files: $files, contentView: self)
+                    .navigationTitle("PDFapp")
+                    .toolbar {
+                        ToolbarItem {
+                            Button(action: addItem) {
+                                Label("Add", systemImage: "plus")
+                            }
                         }
                     }
-                }
-                .background(Color.fromIRgb(r: 244, g: 244, b: 244))
-                .onAppear {
-                    updateFilesList()
-                }
+            }
+            .padding()
+            .background(Color.fromIRgb(r: 244, g: 244, b: 244))
+            .onAppear {
+                updateFilesList()
+            }
         }
         .fileExporter(isPresented: $isExporting, document: lastItemSelected != -1 ? files[lastItemSelected].getMyPDFDocument() : nil, contentType: .pdf, defaultFilename: lastItemSelected != -1 ? "exported-\(files[lastItemSelected].name)" : "unnamed.pdf", onCompletion: { result in
 isExporting = false
@@ -42,19 +45,20 @@ isExporting = false
             do {
                 fileUrl = try result.get()
             } catch {
-                print(error.localizedDescription)
+                print(error)
                 return
             }
             
             fileUrl?.startAccessingSecurityScopedResource()
             
             do {
-                try FileManager.default.createDirectory(atPath: "\(appDirPath)/documents/", withIntermediateDirectories: false, attributes: [:])
-            } catch { print(error.localizedDescription) }
+                try FileManager.default.createDirectory(atPath: "\(appDirPath)/documents/", withIntermediateDirectories: true, attributes: nil)
+            } catch { print(error) }
             
             do {
-                try FileManager.default.copyItem(atPath: fileUrl!.path, toPath: "\(appDirPath)/documents/\(fileUrl!.lastPathComponent)")
-            } catch { print(error.localizedDescription) }
+                let data = try Data(contentsOf: result.get())
+                try FileManager.default.createFile(atPath: "\(appDirPath)/documents/\(fileUrl!.lastPathComponent)", contents: data)
+            } catch { print(error) }
             
             updateFilesList()
             fileUrl?.stopAccessingSecurityScopedResource()
@@ -77,7 +81,8 @@ isExporting = false
             // load all files
             _files.forEach { fileName in
                 if let document = PDFDocument(url: URL.init(fileURLWithPath: "\(appDirPath)/documents/\(fileName)")) {
-                    let doc = File(name: fileName, pdfDocument: document)
+                    let size = document.documentRef!.page(at: 1)?.getBoxRect(.mediaBox).size
+                    let doc = File(name: fileName, pdfDocument: document, cgSize: size!)
                     files.append(doc)
                 }
             }
@@ -128,47 +133,47 @@ struct FilesListCellView: View {
     var file: File
     var index: Int
     
+    @State private var isOpenned = false
+    
     var body: some View {
         VStack(spacing: 0) {
-            PDFPreview(pdfDoc: file.pdfDocument)
-            
-            Text("\(file.name)\n ")
-                .font(.system(size: 16.0))
-                .lineLimit(2)
-                .padding()
+            Button {
+                isOpenned = true
+            } label: {
+                VStack {
+                    PDFPreview(pdfDoc: file.pdfDocument, cgSize: CGSize(width: 80.0, height: 100.0))
+                    
+                    Text("\(file.name)\n ")
+                        .font(.system(size: 16.0))
+                        .lineLimit(2)
+                        .padding()
+                }
+                .foregroundColor(.black)
+            }
+
         }
         .background(Color.fromIRgb(r: 244, g: 244, b: 244))
         .contentShape(RoundedRectangle(cornerRadius: 8.0))
-        .contextMenu {
-            //Label("Convert to PDF", systemImage: "book.closed")
-            
-//            Button {
-//            } label: {
-//                Label("Convert to PDF", systemImage: "book.closed")
-//            }
-
-//            Button {
-//            } label: {
-//                Label("Merge", systemImage: "arrow.triangle.merge")
-//            }
-//
-//            Button {
-//            } label: {
-//                Label("Split", systemImage: "square.split.2x1")
-//            }
-            
-            Button {
+        .previewContextMenu(preview: Group {
+            PDFPreview(pdfDoc: file.pdfDocument, cgSize: file.cgSize)
+        }, preferredContentSize: .constant(file.cgSize), isActive: .constant(true), presentAsSheet: false, actions: [
+            UIAction(title: "Save", image: UIImage(systemName: "square.and.arrow.down"), handler: { action in
                 contentView.exportFile(index: index)
+            }),
+            
+            UIAction(title: "Remove", image: UIImage(systemName: "trash"), handler: { action in
+                contentView.removeFile(index: index)
+            }),
+        ])
+        .sheet(isPresented: $isOpenned) {
+            Button {
+                isOpenned = false
             } label: {
-                Label("Save", systemImage: "square.and.arrow.down")
+                Text("Close")
+                    .padding()
             }
 
-            Button(role: .destructive) {
-                contentView.removeFile(index: index)
-            } label: {
-                Label("Remove", systemImage: "trash")
-                    .foregroundColor(.red)
-            }
+            PDFKitRepresentedView(pdfDoc: file.pdfDocument)
         }
     }
 }

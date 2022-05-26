@@ -13,6 +13,9 @@ import UniformTypeIdentifiers
 struct File {
     let name: String
     let pdfDocument: PDFDocument
+    let cgSize: CGSize
+    
+    
     
     func getMyPDFDocument() -> MyPDFDocument {
         return MyPDFDocument(pdfDoc: pdfDocument)

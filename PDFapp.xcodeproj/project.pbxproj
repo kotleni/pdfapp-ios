@@ -17,6 +17,8 @@
 		5AE6D7F6283EBC3900EC0858 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F5283EBC3900EC0858 /* File.swift */; };
 		5AE6D7F8283EC51500EC0858 /* PdfFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F7283EC51500EC0858 /* PdfFile.swift */; };
 		5AE6D7FB283F7B7700EC0858 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7FA283F7B7700EC0858 /* Spinner.swift */; };
+		5AE6D7FD283F836F00EC0858 /* CustomContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7FC283F836F00EC0858 /* CustomContextMenu.swift */; };
+		5AE6D7FF283F8E6A00EC0858 /* PDFKitRepresentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7FE283F8E6A00EC0858 /* PDFKitRepresentedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		5AE6D7F5283EBC3900EC0858 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		5AE6D7F7283EC51500EC0858 /* PdfFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfFile.swift; sourceTree = "<group>"; };
 		5AE6D7FA283F7B7700EC0858 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		5AE6D7FC283F836F00EC0858 /* CustomContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContextMenu.swift; sourceTree = "<group>"; };
+		5AE6D7FE283F8E6A00EC0858 /* PDFKitRepresentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitRepresentedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 			children = (
 				5AE6D7ED283EA08600EC0858 /* Color.swift */,
 				5AE6D7F0283EA67B00EC0858 /* String.swift */,
+				5AE6D7FC283F836F00EC0858 /* CustomContextMenu.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -105,6 +110,7 @@
 			children = (
 				5AE6D7F2283EAC0900EC0858 /* PDFPreview.swift */,
 				5AE6D7FA283F7B7700EC0858 /* Spinner.swift */,
+				5AE6D7FE283F8E6A00EC0858 /* PDFKitRepresentedView.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -179,6 +185,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AE6D7FF283F8E6A00EC0858 /* PDFKitRepresentedView.swift in Sources */,
+				5AE6D7FD283F836F00EC0858 /* CustomContextMenu.swift in Sources */,
 				5AE6D7F3283EAC0900EC0858 /* PDFPreview.swift in Sources */,
 				5AE6D7F8283EC51500EC0858 /* PdfFile.swift in Sources */,
 				5AE6D7F6283EBC3900EC0858 /* File.swift in Sources */,

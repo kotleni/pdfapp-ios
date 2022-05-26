@@ -1,5 +1,5 @@
 //
-//  PDFThumbnailRepresented.swift
+//  PDFPreview.swift
 //  PDFapp
 //
 //  Created by Victor Varenik on 25.05.2022.
@@ -10,6 +10,7 @@ import SwiftUI
 
 struct PDFPreview: View {
     var pdfDoc: PDFDocument
+    var cgSize: CGSize
     
     @State private var uiImage: UIImage?
     
@@ -18,8 +19,8 @@ struct PDFPreview: View {
             if uiImage != nil {
                 Image(uiImage: uiImage!)
                     .resizable()
-                    .frame(width: 80, height: 100)
-                    .aspectRatio(contentMode: .fit)
+                    .frame(width: cgSize.width, height: cgSize.height)
+                    .aspectRatio(contentMode: .fill)
                     .background(RoundedRectangle(cornerRadius: 8).fill(Color.white))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {
