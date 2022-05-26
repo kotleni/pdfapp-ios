@@ -21,7 +21,7 @@ struct ContentView: View {
                 .toolbar {
                     ToolbarItem {
                         Button(action: addItem) {
-                            Text("Import file")
+                            Text("Import")
                         }
                     }
                 }
@@ -105,7 +105,7 @@ struct FilesListView: View {
     var contentView: ContentView
     
     let appDirPath = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask)[0].path
-    var columns = Array(repeating: GridItem(.fixed(100.0), spacing: 16), count: 3)
+    let columns = Array(repeating: GridItem(.fixed(110.0), spacing: 16), count: 3)
     
     var body: some View {
         ScrollView {
@@ -115,51 +115,57 @@ struct FilesListView: View {
                         let file = files[index-1]
                         let _index = index-1
                         
-                        VStack {
-                            PDFThumbnailRepresented(pdfDoc: file.pdfDocument)
-                            
-                            Text("\(file.name)\n ")
-                                //.fontWeight(.bold)
-                                .font(.system(size: 16.0))
-                                .lineLimit(2)
-                                .padding()
-                                //.padding()
-                        }
-                        .frame(width: 140.0, height: 200.0)
-                        //.padding()
-                        .background(Color.fromIRgb(r: 244, g: 244, b: 244))
-                        .contentShape(RoundedRectangle(cornerRadius: 8.0))
-                        .contextMenu {
-//                            Button {
-//                            } label: {
-//                                Label("Convert to PDF", systemImage: "book.closed")
-//                            }
-
-//                            Button {
-//                            } label: {
-//                                Label("Merge", systemImage: "arrow.triangle.merge")
-//                            }
-//
-//                            Button {
-//                            } label: {
-//                                Label("Split", systemImage: "square.split.2x1")
-//                            }
-                            
-                            Button {
-                                contentView.exportFile(index: _index)
-                            } label: {
-                                Label("Save", systemImage: "square.and.arrow.down")
-                            }
-
-//                            Button(role: .destructive) {
-//                                contentView.removeFile(index: _index)
-//                            } label: {
-//                                Label("Remove", systemImage: "trash")
-//                                    .foregroundColor(.red)
-//                            }
-                        }
+                        FilesListCellView(contentView: contentView, file: file, index: _index)
                     }
                 }
+            }
+        }
+    }
+}
+
+struct FilesListCellView: View {
+    var contentView: ContentView
+    var file: File
+    var index: Int
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            PDFPreview(pdfDoc: file.pdfDocument)
+            
+            Text("\(file.name)\n ")
+                .font(.system(size: 16.0))
+                .lineLimit(2)
+                .padding()
+        }
+        .background(Color.fromIRgb(r: 244, g: 244, b: 244))
+        .contentShape(RoundedRectangle(cornerRadius: 8.0))
+        .contextMenu {
+            Button {
+            } label: {
+                Label("Convert to PDF", systemImage: "book.closed")
+            }
+
+            Button {
+            } label: {
+                Label("Merge", systemImage: "arrow.triangle.merge")
+            }
+
+            Button {
+            } label: {
+                Label("Split", systemImage: "square.split.2x1")
+            }
+            
+            Button {
+                contentView.exportFile(index: index)
+            } label: {
+                Label("Save", systemImage: "square.and.arrow.down")
+            }
+
+            Button(role: .destructive) {
+                contentView.removeFile(index: index)
+            } label: {
+                Label("Remove", systemImage: "trash")
+                    .foregroundColor(.red)
             }
         }
     }
