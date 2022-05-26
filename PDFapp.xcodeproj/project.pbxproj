@@ -13,6 +13,7 @@
 		5A3CA00C283E506E009CF78D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A3CA00B283E506E009CF78D /* Preview Assets.xcassets */; };
 		5A7CC91F283FA57600AAC4B1 /* main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CC91D283FA57600AAC4B1 /* main.xcdatamodeld */; };
 		5A7CC921283FA5CD00AAC4B1 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CC920283FA5CD00AAC4B1 /* PersistenceController.swift */; };
+		5A7CC923283FE9AE00AAC4B1 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 5A7CC922283FE9AE00AAC4B1 /* readme.md */; };
 		5AE6D7EE283EA08600EC0858 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7ED283EA08600EC0858 /* Color.swift */; };
 		5AE6D7F1283EA67B00EC0858 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F0283EA67B00EC0858 /* String.swift */; };
 		5AE6D7F3283EAC0900EC0858 /* PDFPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F2283EAC0900EC0858 /* PDFPreview.swift */; };
@@ -31,6 +32,7 @@
 		5A3CA00B283E506E009CF78D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5A7CC91E283FA57600AAC4B1 /* main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = main.xcdatamodel; sourceTree = "<group>"; };
 		5A7CC920283FA5CD00AAC4B1 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		5A7CC922283FE9AE00AAC4B1 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		5AE6D7ED283EA08600EC0858 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5AE6D7F0283EA67B00EC0858 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		5AE6D7F2283EAC0900EC0858 /* PDFPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPreview.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 		5A3C9FF8283E506C009CF78D = {
 			isa = PBXGroup;
 			children = (
+				5A7CC922283FE9AE00AAC4B1 /* readme.md */,
 				5A3CA003283E506C009CF78D /* PDFapp */,
 				5A3CA002283E506C009CF78D /* Products */,
 			);
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A3CA00C283E506E009CF78D /* Preview Assets.xcassets in Resources */,
+				5A7CC923283FE9AE00AAC4B1 /* readme.md in Resources */,
 				5A3CA009283E506E009CF78D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
