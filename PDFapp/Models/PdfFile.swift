@@ -14,10 +14,10 @@ struct MyPDFDocument: FileDocument {
     static var readableContentTypes = [UTType.pdf]
     static var writableContentTypes = [UTType.pdf]
 
-    var data: Data? = nil
-
-    init(pdfDoc: PDFDocument) {
-        data = FileManager.default.contents(atPath: pdfDoc.documentURL!.path)
+    var data: Data?
+    
+    init(data: Data) {
+        self.data = data
     }
 
     init(configuration: ReadConfiguration) throws {

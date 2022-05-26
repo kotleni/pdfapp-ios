@@ -15,12 +15,12 @@ struct PDFPreview: View {
     @State private var uiImage: UIImage?
     
     var body: some View {
-        VStack {
+        Group {
             if uiImage != nil {
                 Image(uiImage: uiImage!)
                     .resizable()
                     .frame(width: cgSize.width, height: cgSize.height)
-                    .aspectRatio(contentMode: .fill)
+                    .scaledToFit()
                     .background(RoundedRectangle(cornerRadius: 8).fill(Color.white))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {

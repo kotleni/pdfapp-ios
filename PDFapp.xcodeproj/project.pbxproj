@@ -11,6 +11,8 @@
 		5A3CA007283E506C009CF78D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3CA006283E506C009CF78D /* ContentView.swift */; };
 		5A3CA009283E506E009CF78D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A3CA008283E506E009CF78D /* Assets.xcassets */; };
 		5A3CA00C283E506E009CF78D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A3CA00B283E506E009CF78D /* Preview Assets.xcassets */; };
+		5A7CC91F283FA57600AAC4B1 /* main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CC91D283FA57600AAC4B1 /* main.xcdatamodeld */; };
+		5A7CC921283FA5CD00AAC4B1 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CC920283FA5CD00AAC4B1 /* PersistenceController.swift */; };
 		5AE6D7EE283EA08600EC0858 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7ED283EA08600EC0858 /* Color.swift */; };
 		5AE6D7F1283EA67B00EC0858 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F0283EA67B00EC0858 /* String.swift */; };
 		5AE6D7F3283EAC0900EC0858 /* PDFPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F2283EAC0900EC0858 /* PDFPreview.swift */; };
@@ -27,6 +29,8 @@
 		5A3CA006283E506C009CF78D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5A3CA008283E506E009CF78D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A3CA00B283E506E009CF78D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5A7CC91E283FA57600AAC4B1 /* main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = main.xcdatamodel; sourceTree = "<group>"; };
+		5A7CC920283FA5CD00AAC4B1 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		5AE6D7ED283EA08600EC0858 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5AE6D7F0283EA67B00EC0858 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		5AE6D7F2283EAC0900EC0858 /* PDFPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPreview.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 				5A3CA006283E506C009CF78D /* ContentView.swift */,
 				5A3CA008283E506E009CF78D /* Assets.xcassets */,
 				5A3CA00A283E506E009CF78D /* Preview Content */,
+				5A7CC91D283FA57600AAC4B1 /* main.xcdatamodeld */,
+				5A7CC920283FA5CD00AAC4B1 /* PersistenceController.swift */,
 			);
 			path = PDFapp;
 			sourceTree = "<group>";
@@ -188,11 +194,13 @@
 				5AE6D7FF283F8E6A00EC0858 /* PDFKitRepresentedView.swift in Sources */,
 				5AE6D7FD283F836F00EC0858 /* CustomContextMenu.swift in Sources */,
 				5AE6D7F3283EAC0900EC0858 /* PDFPreview.swift in Sources */,
+				5A7CC921283FA5CD00AAC4B1 /* PersistenceController.swift in Sources */,
 				5AE6D7F8283EC51500EC0858 /* PdfFile.swift in Sources */,
 				5AE6D7F6283EBC3900EC0858 /* File.swift in Sources */,
 				5AE6D7EE283EA08600EC0858 /* Color.swift in Sources */,
 				5A3CA007283E506C009CF78D /* ContentView.swift in Sources */,
 				5AE6D7F1283EA67B00EC0858 /* String.swift in Sources */,
+				5A7CC91F283FA57600AAC4B1 /* main.xcdatamodeld in Sources */,
 				5A3CA005283E506C009CF78D /* PDFappApp.swift in Sources */,
 				5AE6D7FB283F7B7700EC0858 /* Spinner.swift in Sources */,
 			);
@@ -395,6 +403,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5A7CC91D283FA57600AAC4B1 /* main.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5A7CC91E283FA57600AAC4B1 /* main.xcdatamodel */,
+			);
+			currentVersion = 5A7CC91E283FA57600AAC4B1 /* main.xcdatamodel */;
+			path = main.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5A3C9FF9283E506C009CF78D /* Project object */;
 }

@@ -14,6 +14,13 @@ struct ContentView: View {
     @State private var isExporting = false
     @State private var lastItemSelected = -1
     
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \SavedFile.name, ascending: true)],
+        animation: .default)
+    private var savedFiles: FetchedResults<SavedFile>
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -39,29 +46,22 @@ isExporting = false
         .fileImporter(isPresented: $isImporting, allowedContentTypes: [.pdf, .png, .jpeg]) { result in
             isImporting = false
             
-            var fileUrl: URL? = nil
-            let appDirPath = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask)[0].path
-            
             do {
-                fileUrl = try result.get()
+                let fileUrl = try result.get()
+                fileUrl.startAccessingSecurityScopedResource()
+                
+                let data = try Data(contentsOf: fileUrl)
+                let newItem = SavedFile(context: viewContext)
+                newItem.name = fileUrl.lastPathComponent
+                newItem.data = data
+                
+                fileUrl.stopAccessingSecurityScopedResource()
+                try viewContext.save()
             } catch {
                 print(error)
                 return
             }
-            
-            fileUrl?.startAccessingSecurityScopedResource()
-            
-            do {
-                try FileManager.default.createDirectory(atPath: "\(appDirPath)/documents/", withIntermediateDirectories: true, attributes: nil)
-            } catch { print(error) }
-            
-            do {
-                let data = try Data(contentsOf: result.get())
-                try FileManager.default.createFile(atPath: "\(appDirPath)/documents/\(fileUrl!.lastPathComponent)", contents: data)
-            } catch { print(error) }
-            
             updateFilesList()
-            fileUrl?.stopAccessingSecurityScopedResource()
         }
         
     }
@@ -71,23 +71,18 @@ isExporting = false
     }
     
     func updateFilesList() {
-        do {
-            let appDirPath = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask)[0].path
-            let _files = try FileManager.default.contentsOfDirectory(atPath: "\(appDirPath)/documents/")
-            
-            // clear list
-            files.removeAll()
-            
-            // load all files
-            _files.forEach { fileName in
-                if let document = PDFDocument(url: URL.init(fileURLWithPath: "\(appDirPath)/documents/\(fileName)")) {
-                    let size = document.documentRef!.page(at: 1)?.getBoxRect(.mediaBox).size
-                    let doc = File(name: fileName, pdfDocument: document, cgSize: size!)
-                    files.append(doc)
-                }
+        files.removeAll()
+        
+        savedFiles.forEach { savedFile in
+            if let document = PDFDocument(data: savedFile.data!) {
+                let size = document.documentRef!.page(at: 1)?.getBoxRect(.mediaBox).size
+                let doc = File(name: savedFile.name!, savedFile: savedFile, pdfDocument: document, cgSize: size!)
+                
+                files.append(doc)
+            } else {
+                fatalError("document = nil")
             }
-            
-        } catch { print(error.localizedDescription) }
+        }
     }
     
     func exportFile(index: Int) {
@@ -96,11 +91,10 @@ isExporting = false
     }
     
     func removeFile(index: Int) {
+        viewContext.delete(savedFiles[index])
         do {
-            let appDirPath = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask)[0].path
-            try FileManager.default.removeItem(atPath: "\(appDirPath)/documents/\(files[index].name)")
-        } catch { print(error.localizedDescription) }
-        
+            try viewContext.save()
+        } catch {}
         updateFilesList()
     }
 }
@@ -109,21 +103,25 @@ struct FilesListView: View {
     @Binding var files: Array<File>
     var contentView: ContentView
     
-    let appDirPath = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask)[0].path
     let columns = Array(repeating: GridItem(.fixed(110.0), spacing: 16), count: 3)
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, alignment: .center) {
-                if files.count > 0 {
-                    ForEach((1...files.count), id: \.self) { index in
-                        let file = files[index-1]
-                        let _index = index-1
-                        
-                        FilesListCellView(contentView: contentView, file: file, index: _index)
+        if files.count > 0 {
+            ScrollView {
+                LazyVGrid(columns: columns, alignment: .center) {
+                    if files.count > 0 {
+                        ForEach((1...files.count), id: \.self) { index in
+                            let file = files[index-1]
+                            let _index = index-1
+                            
+                            FilesListCellView(contentView: contentView, file: file, index: _index)
+                        }
                     }
                 }
             }
+        } else {
+            Text("You don't have any files.")
+                .background(.clear)
         }
     }
 }
@@ -155,7 +153,7 @@ struct FilesListCellView: View {
         .background(Color.fromIRgb(r: 244, g: 244, b: 244))
         .contentShape(RoundedRectangle(cornerRadius: 8.0))
         .previewContextMenu(preview: Group {
-            PDFPreview(pdfDoc: file.pdfDocument, cgSize: file.cgSize)
+            PDFPreview(pdfDoc: file.pdfDocument, cgSize: CGSize(width: file.cgSize.width / 1.5, height: file.cgSize.height / 1.5))
         }, preferredContentSize: .constant(file.cgSize), isActive: .constant(true), presentAsSheet: false, actions: [
             UIAction(title: "Save", image: UIImage(systemName: "square.and.arrow.down"), handler: { action in
                 contentView.exportFile(index: index)

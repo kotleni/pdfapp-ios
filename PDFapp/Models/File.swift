@@ -12,12 +12,11 @@ import UniformTypeIdentifiers
 
 struct File {
     let name: String
+    let savedFile: SavedFile
     let pdfDocument: PDFDocument
     let cgSize: CGSize
     
-    
-    
     func getMyPDFDocument() -> MyPDFDocument {
-        return MyPDFDocument(pdfDoc: pdfDocument)
+        return MyPDFDocument(data: savedFile.data!)
     }
 }
