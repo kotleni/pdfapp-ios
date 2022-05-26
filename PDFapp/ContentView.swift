@@ -23,21 +23,25 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                FilesListView(files: $files, contentView: self)
-                    .navigationTitle("PDFapp")
-                    .toolbar {
-                        ToolbarItem {
-                            Button(action: addItem) {
-                                Label("Add", systemImage: "plus")
+            ZStack {
+                Color.fromIRgb(r: 244, g: 244, b: 244)
+                    .ignoresSafeArea()
+            
+                VStack {
+                    FilesListView(files: $files, contentView: self)
+                        .navigationTitle("PDFapp")
+                        .toolbar {
+                            ToolbarItem {
+                                Button(action: addItem) {
+                                    Label("Add", systemImage: "plus")
+                                }
                             }
                         }
-                    }
-            }
-            .padding()
-            .background(Color.fromIRgb(r: 244, g: 244, b: 244))
-            .onAppear {
-                updateFilesList()
+                }
+                .padding()
+                .onAppear {
+                    updateFilesList()
+                }
             }
         }
         .fileExporter(isPresented: $isExporting, document: lastItemSelected != -1 ? files[lastItemSelected].getMyPDFDocument() : nil, contentType: .pdf, defaultFilename: lastItemSelected != -1 ? "exported-\(files[lastItemSelected].name)" : "unnamed.pdf", onCompletion: { result in
@@ -88,6 +92,8 @@ isExporting = false
     func exportFile(index: Int) {
         lastItemSelected = index
         isExporting = true
+        
+        lastItemSelected = -1
     }
     
     func removeFile(index: Int) {
@@ -95,7 +101,10 @@ isExporting = false
         do {
             try viewContext.save()
         } catch {}
+        
         updateFilesList()
+        
+        lastItemSelected = -1
     }
 }
 
@@ -120,8 +129,14 @@ struct FilesListView: View {
                 }
             }
         } else {
-            Text("You don't have any files.")
-                .background(.clear)
+            VStack {
+                Image(systemName: "folder")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+                    .padding()
+                Text("You don't have any files.")
+            }
         }
     }
 }
