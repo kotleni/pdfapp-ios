@@ -14,8 +14,11 @@
 		5A7CC91F283FA57600AAC4B1 /* main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CC91D283FA57600AAC4B1 /* main.xcdatamodeld */; };
 		5A7CC921283FA5CD00AAC4B1 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CC920283FA5CD00AAC4B1 /* PersistenceController.swift */; };
 		5A7CC923283FE9AE00AAC4B1 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 5A7CC922283FE9AE00AAC4B1 /* readme.md */; };
+		5A7CC97A28400A5500AAC4B1 /* FilesListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CC97928400A5500AAC4B1 /* FilesListCellView.swift */; };
+		5A7CC97C28400AA900AAC4B1 /* FilesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CC97B28400AA800AAC4B1 /* FilesListView.swift */; };
+		5A7CC97E28400AC800AAC4B1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CC97D28400AC800AAC4B1 /* MainView.swift */; };
+		5A7CC98028400C0000AAC4B1 /* ViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CC97F28400C0000AAC4B1 /* ViewerView.swift */; };
 		5AE6D7EE283EA08600EC0858 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7ED283EA08600EC0858 /* Color.swift */; };
-		5AE6D7F1283EA67B00EC0858 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F0283EA67B00EC0858 /* String.swift */; };
 		5AE6D7F3283EAC0900EC0858 /* PDFPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F2283EAC0900EC0858 /* PDFPreview.swift */; };
 		5AE6D7F6283EBC3900EC0858 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F5283EBC3900EC0858 /* File.swift */; };
 		5AE6D7F8283EC51500EC0858 /* MyPDFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F7283EC51500EC0858 /* MyPDFDocument.swift */; };
@@ -33,8 +36,11 @@
 		5A7CC91E283FA57600AAC4B1 /* main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = main.xcdatamodel; sourceTree = "<group>"; };
 		5A7CC920283FA5CD00AAC4B1 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		5A7CC922283FE9AE00AAC4B1 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
+		5A7CC97928400A5500AAC4B1 /* FilesListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesListCellView.swift; sourceTree = "<group>"; };
+		5A7CC97B28400AA800AAC4B1 /* FilesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesListView.swift; sourceTree = "<group>"; };
+		5A7CC97D28400AC800AAC4B1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		5A7CC97F28400C0000AAC4B1 /* ViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerView.swift; sourceTree = "<group>"; };
 		5AE6D7ED283EA08600EC0858 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		5AE6D7F0283EA67B00EC0858 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		5AE6D7F2283EAC0900EC0858 /* PDFPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPreview.swift; sourceTree = "<group>"; };
 		5AE6D7F5283EBC3900EC0858 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		5AE6D7F7283EC51500EC0858 /* MyPDFDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPDFDocument.swift; sourceTree = "<group>"; };
@@ -74,6 +80,7 @@
 		5A3CA003283E506C009CF78D /* PDFapp */ = {
 			isa = PBXGroup;
 			children = (
+				5A7CC9762840091A00AAC4B1 /* Views */,
 				5AE6D7F9283F7B6100EC0858 /* Elements */,
 				5AE6D7F4283EBC3000EC0858 /* Models */,
 				5AE6D7EF283EA63A00EC0858 /* Extensions */,
@@ -95,11 +102,37 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		5A7CC9762840091A00AAC4B1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5A7CC97828400A3000AAC4B1 /* Viewer */,
+				5A7CC97728400A2900AAC4B1 /* Main */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5A7CC97728400A2900AAC4B1 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5A7CC97928400A5500AAC4B1 /* FilesListCellView.swift */,
+				5A7CC97B28400AA800AAC4B1 /* FilesListView.swift */,
+				5A7CC97D28400AC800AAC4B1 /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		5A7CC97828400A3000AAC4B1 /* Viewer */ = {
+			isa = PBXGroup;
+			children = (
+				5A7CC97F28400C0000AAC4B1 /* ViewerView.swift */,
+			);
+			path = Viewer;
+			sourceTree = "<group>";
+		};
 		5AE6D7EF283EA63A00EC0858 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				5AE6D7ED283EA08600EC0858 /* Color.swift */,
-				5AE6D7F0283EA67B00EC0858 /* String.swift */,
 				5AE6D7FC283F836F00EC0858 /* CustomContextMenu.swift */,
 			);
 			path = Extensions;
@@ -196,14 +229,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AE6D7FF283F8E6A00EC0858 /* PDFKitRepresentedView.swift in Sources */,
+				5A7CC98028400C0000AAC4B1 /* ViewerView.swift in Sources */,
+				5A7CC97E28400AC800AAC4B1 /* MainView.swift in Sources */,
 				5AE6D7FD283F836F00EC0858 /* CustomContextMenu.swift in Sources */,
 				5AE6D7F3283EAC0900EC0858 /* PDFPreview.swift in Sources */,
 				5A7CC921283FA5CD00AAC4B1 /* PersistenceController.swift in Sources */,
 				5AE6D7F8283EC51500EC0858 /* MyPDFDocument.swift in Sources */,
 				5AE6D7F6283EBC3900EC0858 /* File.swift in Sources */,
 				5AE6D7EE283EA08600EC0858 /* Color.swift in Sources */,
+				5A7CC97C28400AA900AAC4B1 /* FilesListView.swift in Sources */,
 				5A3CA007283E506C009CF78D /* ContentView.swift in Sources */,
-				5AE6D7F1283EA67B00EC0858 /* String.swift in Sources */,
+				5A7CC97A28400A5500AAC4B1 /* FilesListCellView.swift in Sources */,
 				5A7CC91F283FA57600AAC4B1 /* main.xcdatamodeld in Sources */,
 				5A3CA005283E506C009CF78D /* PDFappApp.swift in Sources */,
 				5AE6D7FB283F7B7700EC0858 /* Spinner.swift in Sources */,

@@ -22,7 +22,7 @@ struct PDFPreview: View {
                     .resizable()
                     .frame(width: cgSize.width, height: cgSize.height)
                     .scaledToFit()
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color.white))
+                    .background(RoundedRectangle(cornerRadius: 8).fill(Color.fromIRgb(r: 244, g: 244, b: 244)))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {
                 // if loading
