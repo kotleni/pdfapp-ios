@@ -17,6 +17,4 @@ struct PDFappApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
-    
-    
 }

@@ -52,7 +52,9 @@ isExporting = false
             
             do {
                 let fileUrl = try result.get()
-                fileUrl.startAccessingSecurityScopedResource()
+                if !fileUrl.startAccessingSecurityScopedResource() {
+                    fatalError("You don't have permissions for this resource.")
+                }
                 
                 let data = try Data(contentsOf: fileUrl)
                 let newItem = SavedFile(context: viewContext)

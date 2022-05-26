@@ -8,9 +8,10 @@
 import PDFKit
 import SwiftUI
 
+// preview of pdf document
 struct PDFPreview: View {
-    var pdfDoc: PDFDocument
-    var cgSize: CGSize
+    var pdfDoc: PDFDocument // pdf document
+    var cgSize: CGSize // document preview size
     
     @State private var uiImage: UIImage?
     
@@ -24,6 +25,7 @@ struct PDFPreview: View {
                     .background(RoundedRectangle(cornerRadius: 8).fill(Color.white))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {
+                // if loading
                 Spinner(isAnimating: true, style: .large)
                     .padding(.top, (UIScreen.main.bounds.width / 2))
             }

@@ -7,8 +7,4 @@
 
 import Foundation
 
-extension String {
-    func sliceByLen(maxLen: Int) -> String {
-        return self.prefix(maxLen).base
-    }
-}
+extension String { }
