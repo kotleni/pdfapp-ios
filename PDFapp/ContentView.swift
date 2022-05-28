@@ -12,9 +12,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-//                Color.fromIRgb(r: 244, g: 244, b: 244)
-//                    .ignoresSafeArea()
-            
                 MainView()
             }
         }

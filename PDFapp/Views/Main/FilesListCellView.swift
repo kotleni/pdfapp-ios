@@ -22,7 +22,7 @@ struct FilesListCellView: View {
                 VStack {
                     PDFPreview(pdfDoc: file.pdfDocument, cgSize: CGSize(width: 80.0, height: 100.0))
                     
-                    Text("\(file.name)\n ")
+                    Text("\(file.name)")
                         .font(.system(size: 16.0))
                         .lineLimit(2)
                         .padding()
@@ -31,13 +31,16 @@ struct FilesListCellView: View {
             }
 
         }
-        .background(Color.fromIRgb(r: 244, g: 244, b: 244))
         .contentShape(RoundedRectangle(cornerRadius: 8.0))
         .previewContextMenu(preview: Group {
             PDFPreview(pdfDoc: file.pdfDocument, cgSize: CGSize(width: file.cgSize.width / 1.5, height: file.cgSize.height / 1.5))
         }, preferredContentSize: .constant(file.cgSize), isActive: .constant(true), presentAsSheet: false, actions: [
             UIAction(title: "Save", image: UIImage(systemName: "square.and.arrow.down"), handler: { action in
                 mainView.exportFile(index: index)
+            }),
+            
+            UIAction(title: "Save as png", image: UIImage(systemName: "square.and.arrow.down"), handler: { action in
+                mainView.exportPng(index: index)
             }),
             
             UIAction(title: "Remove", image: UIImage(systemName: "trash"), handler: { action in

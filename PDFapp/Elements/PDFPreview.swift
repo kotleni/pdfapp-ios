@@ -22,12 +22,21 @@ struct PDFPreview: View {
                     .resizable()
                     .frame(width: cgSize.width, height: cgSize.height)
                     .scaledToFit()
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color.fromIRgb(r: 244, g: 244, b: 244)))
+                    .clipped()
+                    .padding(2)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.fromIRgb(r: 210, g: 210, b: 210))
+                    )
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {
                 // if loading
                 Spinner(isAnimating: true, style: .large)
-                    .padding(.top, (UIScreen.main.bounds.width / 2))
+                    .frame(width: cgSize.width, height: cgSize.height)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.fromIRgb(r: 234, g: 234, b: 234))
+                    )
             }
         }.onAppear {
             loadPreview()
@@ -37,15 +46,19 @@ struct PDFPreview: View {
     
     // load preview from pdfdocument
     private func loadPreview() {
-        let page = pdfDoc.documentRef!.page(at: 1)
-        let pageBox: CGRect? = page?.getBoxRect(.mediaBox)
-        
+        let page = pdfDoc.documentRef!.page(at: 1)!
+        uiImage = PDFPreview.getPageImage(page: page)
+    }
+    
+    static func getPageImage(page: CGPDFPage) -> UIImage {
+        let pageBox: CGRect? = page.getBoxRect(.mediaBox)
         let renderer = UIGraphicsImageRenderer(size: pageBox!.size)
-        uiImage = renderer.image { ctx in
+        
+        return renderer.image { ctx in
             ctx.cgContext.translateBy(x: 0.0, y: pageBox!.size.height)
             ctx.cgContext.scaleBy(x: 1.0, y: -1.0)
 
-            ctx.cgContext.drawPDFPage(page!)
+            ctx.cgContext.drawPDFPage(page)
         }
     }
 }
