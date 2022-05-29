@@ -1,42 +1,33 @@
 //
-//  PDFPreview.swift
+//  PDFPageView.swift
 //  PDFapp
 //
-//  Created by Victor Varenik on 25.05.2022.
+//  Created by Victor Varenik on 29.05.2022.
 //
 
-import PDFKit
 import SwiftUI
+import PDFKit
 
-// preview of pdf document
-struct PDFPreview: View {
-    var pdfDoc: PDFDocument // pdf document
-    var cgSize: CGSize // document preview size
-    
-    @State private var uiImage: UIImage?
+struct PDFPageView: View {
+    let page: CGPDFPage
+    // let cgSize: CGSize
+
+    @State private var uiImage: UIImage? = nil
     
     var body: some View {
-        Group {
+        VStack {
             if uiImage != nil {
                 Image(uiImage: uiImage!)
                     .resizable()
-                    .frame(width: cgSize.width, height: cgSize.height)
+                    //.frame(width: cgSize.width, height: cgSize.height)
                     .scaledToFit()
                     .clipped()
-                    .padding(2)
+                    .padding(3)
                     .background(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.fromIRgb(r: 210, g: 210, b: 210))
                     )
                     .clipShape(RoundedRectangle(cornerRadius: 8))
-            } else {
-                // if loading
-                Spinner(isAnimating: true, style: .large)
-                    .frame(width: cgSize.width, height: cgSize.height)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.fromIRgb(r: 234, g: 234, b: 234))
-                    )
             }
         }.onAppear {
             loadPreview()
@@ -45,7 +36,6 @@ struct PDFPreview: View {
     
     // load preview from pdfdocument
     private func loadPreview() {
-        let page = pdfDoc.documentRef!.page(at: 1)!
         uiImage = PDFPreview.getPageImage(page: page)
     }
     
