@@ -17,7 +17,7 @@ struct File {
     let cgSize: CGSize
     
     // get mypdfdocument file
-    func getMyPDFDocument() -> MyPDFDocument {
-        return MyPDFDocument(data: savedFile.data!)
+    func getPdfDocument() -> PdfDocument {
+        return PdfDocument(data: savedFile.data!)
     }
 }

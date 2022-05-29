@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5A0522FA2842146B009AB5F1 /* ImageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0522F92842146B009AB5F1 /* ImageDocument.swift */; };
+		5A0522FC28423884009AB5F1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0522FB28423884009AB5F1 /* ViewModel.swift */; };
+		5A05230B28428B97009AB5F1 /* SavedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A05230A28428B97009AB5F1 /* SavedFile.swift */; };
+		5A2237FF2843E3BC003B707A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2237FE2843E3BC003B707A /* CoreDataManager.swift */; };
 		5A3CA005283E506C009CF78D /* PDFappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3CA004283E506C009CF78D /* PDFappApp.swift */; };
 		5A3CA007283E506C009CF78D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3CA006283E506C009CF78D /* ContentView.swift */; };
 		5A3CA009283E506E009CF78D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A3CA008283E506E009CF78D /* Assets.xcassets */; };
@@ -22,7 +25,7 @@
 		5AE6D7EE283EA08600EC0858 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7ED283EA08600EC0858 /* Color.swift */; };
 		5AE6D7F3283EAC0900EC0858 /* PDFPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F2283EAC0900EC0858 /* PDFPreview.swift */; };
 		5AE6D7F6283EBC3900EC0858 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F5283EBC3900EC0858 /* File.swift */; };
-		5AE6D7F8283EC51500EC0858 /* MyPDFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F7283EC51500EC0858 /* MyPDFDocument.swift */; };
+		5AE6D7F8283EC51500EC0858 /* PdfDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7F7283EC51500EC0858 /* PdfDocument.swift */; };
 		5AE6D7FB283F7B7700EC0858 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7FA283F7B7700EC0858 /* Spinner.swift */; };
 		5AE6D7FD283F836F00EC0858 /* CustomContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7FC283F836F00EC0858 /* CustomContextMenu.swift */; };
 		5AE6D7FF283F8E6A00EC0858 /* PDFKitRepresentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE6D7FE283F8E6A00EC0858 /* PDFKitRepresentedView.swift */; };
@@ -30,6 +33,9 @@
 
 /* Begin PBXFileReference section */
 		5A0522F92842146B009AB5F1 /* ImageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDocument.swift; sourceTree = "<group>"; };
+		5A0522FB28423884009AB5F1 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		5A05230A28428B97009AB5F1 /* SavedFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedFile.swift; sourceTree = "<group>"; };
+		5A2237FE2843E3BC003B707A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		5A3CA001283E506C009CF78D /* PDFapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A3CA004283E506C009CF78D /* PDFappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFappApp.swift; sourceTree = "<group>"; };
 		5A3CA006283E506C009CF78D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,7 +51,7 @@
 		5AE6D7ED283EA08600EC0858 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5AE6D7F2283EAC0900EC0858 /* PDFPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPreview.swift; sourceTree = "<group>"; };
 		5AE6D7F5283EBC3900EC0858 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		5AE6D7F7283EC51500EC0858 /* MyPDFDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPDFDocument.swift; sourceTree = "<group>"; };
+		5AE6D7F7283EC51500EC0858 /* PdfDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfDocument.swift; sourceTree = "<group>"; };
 		5AE6D7FA283F7B7700EC0858 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		5AE6D7FC283F836F00EC0858 /* CustomContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContextMenu.swift; sourceTree = "<group>"; };
 		5AE6D7FE283F8E6A00EC0858 /* PDFKitRepresentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitRepresentedView.swift; sourceTree = "<group>"; };
@@ -62,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A0522FD28423907009AB5F1 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				5AE6D7F7283EC51500EC0858 /* PdfDocument.swift */,
+				5A0522F92842146B009AB5F1 /* ImageDocument.swift */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
 		5A3C9FF8283E506C009CF78D = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +107,8 @@
 				5A3CA00A283E506E009CF78D /* Preview Content */,
 				5A7CC91D283FA57600AAC4B1 /* main.xcdatamodeld */,
 				5A7CC920283FA5CD00AAC4B1 /* PersistenceController.swift */,
+				5A0522FB28423884009AB5F1 /* ViewModel.swift */,
+				5A2237FE2843E3BC003B707A /* CoreDataManager.swift */,
 			);
 			path = PDFapp;
 			sourceTree = "<group>";
@@ -136,6 +153,7 @@
 			children = (
 				5AE6D7ED283EA08600EC0858 /* Color.swift */,
 				5AE6D7FC283F836F00EC0858 /* CustomContextMenu.swift */,
+				5A05230A28428B97009AB5F1 /* SavedFile.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -143,9 +161,8 @@
 		5AE6D7F4283EBC3000EC0858 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5A0522FD28423907009AB5F1 /* Documents */,
 				5AE6D7F5283EBC3900EC0858 /* File.swift */,
-				5AE6D7F7283EC51500EC0858 /* MyPDFDocument.swift */,
-				5A0522F92842146B009AB5F1 /* ImageDocument.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,14 +251,17 @@
 				5A0522FA2842146B009AB5F1 /* ImageDocument.swift in Sources */,
 				5AE6D7FF283F8E6A00EC0858 /* PDFKitRepresentedView.swift in Sources */,
 				5A7CC98028400C0000AAC4B1 /* ViewerView.swift in Sources */,
+				5A2237FF2843E3BC003B707A /* CoreDataManager.swift in Sources */,
+				5A05230B28428B97009AB5F1 /* SavedFile.swift in Sources */,
 				5A7CC97E28400AC800AAC4B1 /* MainView.swift in Sources */,
 				5AE6D7FD283F836F00EC0858 /* CustomContextMenu.swift in Sources */,
 				5AE6D7F3283EAC0900EC0858 /* PDFPreview.swift in Sources */,
 				5A7CC921283FA5CD00AAC4B1 /* PersistenceController.swift in Sources */,
-				5AE6D7F8283EC51500EC0858 /* MyPDFDocument.swift in Sources */,
+				5AE6D7F8283EC51500EC0858 /* PdfDocument.swift in Sources */,
 				5AE6D7F6283EBC3900EC0858 /* File.swift in Sources */,
 				5AE6D7EE283EA08600EC0858 /* Color.swift in Sources */,
 				5A7CC97C28400AA900AAC4B1 /* FilesListView.swift in Sources */,
+				5A0522FC28423884009AB5F1 /* ViewModel.swift in Sources */,
 				5A3CA007283E506C009CF78D /* ContentView.swift in Sources */,
 				5A7CC97A28400A5500AAC4B1 /* FilesListCellView.swift in Sources */,
 				5A7CC91F283FA57600AAC4B1 /* main.xcdatamodeld in Sources */,

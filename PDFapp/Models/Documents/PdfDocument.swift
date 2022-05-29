@@ -10,7 +10,7 @@ import PDFKit
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct MyPDFDocument: FileDocument {
+struct PdfDocument: FileDocument {
     static var readableContentTypes = [UTType.pdf]
     static var writableContentTypes = [UTType.pdf]
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FilesListCellView: View {
-    var mainView: MainView
+    @ObservedObject var viewModel: ViewModel
     var file: File
     var index: Int
     
@@ -36,15 +36,11 @@ struct FilesListCellView: View {
             PDFPreview(pdfDoc: file.pdfDocument, cgSize: CGSize(width: file.cgSize.width / 1.5, height: file.cgSize.height / 1.5))
         }, preferredContentSize: .constant(file.cgSize), isActive: .constant(true), presentAsSheet: false, actions: [
             UIAction(title: "Save", image: UIImage(systemName: "square.and.arrow.down"), handler: { action in
-                mainView.exportFile(index: index)
-            }),
-            
-            UIAction(title: "Save as png", image: UIImage(systemName: "square.and.arrow.down"), handler: { action in
-                mainView.exportPng(index: index)
+                viewModel.exportFile(index: index)
             }),
             
             UIAction(title: "Remove", image: UIImage(systemName: "trash"), handler: { action in
-                mainView.removeFile(index: index)
+                viewModel.removeFile(index: index)
             }),
         ])
         .sheet(isPresented: $isOpenned) {
