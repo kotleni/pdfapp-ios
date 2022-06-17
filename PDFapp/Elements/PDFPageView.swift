@@ -10,7 +10,6 @@ import PDFKit
 
 struct PDFPageView: View {
     let page: CGPDFPage
-    // let cgSize: CGSize
 
     @State private var uiImage: UIImage? = nil
     
@@ -19,7 +18,6 @@ struct PDFPageView: View {
             if uiImage != nil {
                 Image(uiImage: uiImage!)
                     .resizable()
-                    //.frame(width: cgSize.width, height: cgSize.height)
                     .scaledToFit()
                     .clipped()
                     .padding(3)
